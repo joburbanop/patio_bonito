@@ -1,6 +1,5 @@
 import React from 'react';
-import Login from './components/login'; // Ajusta la ruta según la ubicación real del archivo
-
+import Login from './components/login'; 
 function App() {
   return (
     <div className="App">

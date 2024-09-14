@@ -60,7 +60,7 @@ const AuthForm = () => {
         />
         <button type="submit">{isRegister ? 'Registrar' : 'Iniciar Sesión'}</button>
       </form>
-      {/* Botón para alternar entre registro y login */}
+      { }
       <button onClick={() => setIsRegister(!isRegister)}>
         {isRegister ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate'}
       </button>

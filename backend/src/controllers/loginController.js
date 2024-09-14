@@ -4,12 +4,12 @@ const db = require('../config/db');
 const dotenv = require('dotenv');
 dotenv.config();
 
-
+//controlador para registrar usuario
 exports.registerUser = (req, res) => {
   const { nombre_usuario, email, contraseña } = req.body;
   const encriptacion = bcrypt.hashSync(contraseña, 8);
 
-  // Insertar el nuevo usuario en la tabla 'usuarios'
+ 
   const insertarusuario = `INSERT INTO Usuarios (nombre_usuario, email, contraseña) VALUES (?, ?, ?)`;
   db.query(insertarusuario, [nombre_usuario, email, encriptacion], (error, result) => {
     //console.log(error)
@@ -33,6 +33,7 @@ exports.registerUser = (req, res) => {
   });
 };
 
+//controlador para verificar usuario
 exports.loginUser = (req, res) => {
   const { email, contraseña } = req.body;
 
@@ -43,9 +44,9 @@ exports.loginUser = (req, res) => {
   const sql = `SELECT * FROM Usuarios WHERE email = ?`;
   //console.log(sql)
   db.query(sql, [email], (error, result) => {
-    console.log(result)
-    console.log(result[0].id_Usarios)
-    console.log(error)
+    //console.log(result)
+    //console.log(result[0].id_Usarios)
+    //console.log(error)
     if (result[0].id_Usarios==1 ){
       console.log("es admin")
     }
