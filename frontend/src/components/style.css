@@ -107,3 +107,36 @@ body {
 .auth-form .switch-button:focus {
   outline: none;
 }
+
+/* MenuLateral.css */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.menu-lateral ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-lateral li {
+  margin: 20px 0;
+}
+
+.menu-lateral a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-lateral a:hover {
+  text-decoration: underline;
+}

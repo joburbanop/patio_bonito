@@ -7,5 +7,6 @@ export const register = async (userData) => {
 };
 
 export const login = async (userData) => {
+  console.log("Esta en loginServices", API_URL+"/login");
   return await axios.post(`${API_URL}/login`, userData);
 };
