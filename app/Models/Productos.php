@@ -9,7 +9,8 @@ class Productos extends Model
 {
     use HasFactory;
 
-    protected $table = 'productos'; // Especifica el nombre de la tabla.
+    protected $table = 'productos'; 
+    protected $primaryKey = 'id';
 
-    protected $fillable = ['nombre', 'descripcion', 'precio', 'cantidad']; // Campos que pueden ser llenados de manera masiva.
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'cantidad'];
 }
