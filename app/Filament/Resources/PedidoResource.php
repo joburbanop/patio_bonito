@@ -40,18 +40,40 @@ class PedidoResource extends Resource
                 Forms\Components\Select::make('producto_id')
                     ->relationship('productos', 'nombre') 
                     ->required()
-                    ->label('Producto'),
+                    ->label('Producto')
+                    ->reactive()
+                    ->afterStateUpdated(function (callable $set, $state) {
+                        // Buscar el precio del producto seleccionado
+                        $producto = \App\Models\Productos::find($state);
+                        if ($producto) {
+                            // Establecer el precio del producto
+                            $set('precio_unitario', $producto->precio);
+                        }
+                    }),
                 Forms\Components\TextInput::make('cantidad')
                     ->required()
                     ->numeric()
                     ->minValue(1)
-                    ->label('Cantidad'),
+                    ->label('Cantidad')
+                    ->reactive() // Hacerlo reactivo para recalcular el total
+                    ->afterStateUpdated(function (callable $set, $get, $state) {
+                        // Recalcular el precio total basado en la cantidad
+                        $set('precio', $get('precio_unitario') * $state);
+                    }),
+                Forms\Components\TextInput::make('precio_unitario')
+                    ->label('Precio Unitario')
+                    ->disabled()
+                    ->numeric()
+                    ->dehydrated(false)
+                    ->prefix('$'),
+
                 Forms\Components\TextInput::make('precio')
                     ->required()
+                    ->disabled()
                     ->numeric()
-                    ->label('Precio por unidad')
-                    ->minValue(10000)
-                    ->prefix("$"),
+                    ->label('Precio Total')
+                    ->prefix('$'),
+            
             ]);
     }
 
