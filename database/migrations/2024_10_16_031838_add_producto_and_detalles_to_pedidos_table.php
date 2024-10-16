@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalles_pedido', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');  
+        Schema::table('pedidos', function (Blueprint $table) {
+            // Agregar columnas para producto, cantidad y precio
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');  
-            $table->integer('cantidad');  
-            $table->decimal('precio', 8, 2); 
-            $table->timestamps();
+            $table->integer('cantidad');
+            $table->decimal('precio', 8, 2);
         });
     }
 
@@ -26,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalles_pedido');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropColumn(['producto_id', 'cantidad', 'precio']);
+        });
     }
 };

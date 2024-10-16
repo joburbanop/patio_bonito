@@ -15,16 +15,16 @@ class PedidoResource extends Resource
 {
     protected static ?string $model = Pedido::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart'; 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('mesa_id')
-                    ->label('Mesa')
                     ->relationship('mesa', 'nombre')
-                    ->required(),
+                    ->required()
+                    ->label('Mesa'),
                 Forms\Components\Select::make('estado')
                     ->options([
                         'pendiente' => 'Pendiente',
@@ -32,8 +32,23 @@ class PedidoResource extends Resource
                         'listo' => 'Listo',
                         'entregado' => 'Entregado',
                     ])
+                    ->required()
                     ->default('pendiente')
-                    ->required(),
+                    ->label('Estado del Pedido'),
+
+                
+                Forms\Components\Select::make('producto_id')
+                    ->relationship('productos', 'nombre') 
+                    ->required()
+                    ->label('Producto'),
+                Forms\Components\TextInput::make('cantidad')
+                    ->required()
+                    ->numeric()
+                    ->label('Cantidad'),
+                Forms\Components\TextInput::make('precio')
+                    ->required()
+                    ->numeric()
+                    ->label('Precio por unidad'),
             ]);
     }
 
@@ -45,9 +60,16 @@ class PedidoResource extends Resource
                     ->label('Mesa')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('estado')
+                    ->label('Estado del Pedido')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('productos.nombre')
+                    ->label('Producto'),
+                Tables\Columns\TextColumn::make('cantidad')
+                    ->label('Cantidad'),
+                Tables\Columns\TextColumn::make('precio')
+                    ->label('Precio por unidad'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Fecha de creación')
+                    ->label('Fecha de Creación')
                     ->dateTime(),
             ])
             ->actions([
@@ -61,7 +83,7 @@ class PedidoResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // Puedes definir relaciones como detalles del pedido aquí.
+            // Aquí puedes definir relaciones adicionales si es necesario
         ];
     }
 

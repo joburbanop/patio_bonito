@@ -12,15 +12,21 @@ class Pedido extends Model
     protected $fillable = [
         'mesa_id',
         'estado',
+        'producto_id',
+        'cantidad',
+        'precio',
     ];
+
+    protected $primaryKey = 'id';
 
     public function mesa()
     {
         return $this->belongsTo(Mesa::class);
     }
 
-    public function detalles()
+    public function productos()
     {
-        return $this->hasMany(DetallePedido::class);
+        return $this->belongsTo(Productos::class, 'producto_id');
     }
+    
 }
