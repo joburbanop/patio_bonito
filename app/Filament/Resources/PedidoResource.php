@@ -44,11 +44,14 @@ class PedidoResource extends Resource
                 Forms\Components\TextInput::make('cantidad')
                     ->required()
                     ->numeric()
+                    ->minValue(1)
                     ->label('Cantidad'),
                 Forms\Components\TextInput::make('precio')
                     ->required()
                     ->numeric()
-                    ->label('Precio por unidad'),
+                    ->label('Precio por unidad')
+                    ->minValue(10000)
+                    ->prefix("$"),
             ]);
     }
 
