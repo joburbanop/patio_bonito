@@ -16,6 +16,12 @@ class MovimientoInventarioResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';  
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole('administrador');
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form

@@ -17,6 +17,12 @@ class PedidoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart'; 
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole('mesero') || auth()->user()->hasRole('cocinero');
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form

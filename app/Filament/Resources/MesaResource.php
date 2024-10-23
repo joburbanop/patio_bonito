@@ -16,6 +16,11 @@ class MesaResource extends Resource
     protected static ?string $model = Mesa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user()->hasRole('administrador') || auth()->user()->hasRole('mesero');
+    }
+
 
     public static function form(Form $form): Form
     {

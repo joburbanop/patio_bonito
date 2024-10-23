@@ -16,6 +16,12 @@ class ProductosResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+     // Solo los administradores pueden ver este recurso en la navegación
+     public static function shouldRegisterNavigation(): bool
+     {
+         return auth()->user()->hasRole('administrador');
+     }
+
     public static function form(Form $form): Form
     {
         return $form
