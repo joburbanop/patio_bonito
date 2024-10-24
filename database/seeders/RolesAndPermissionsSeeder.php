@@ -10,7 +10,7 @@ class RolesAndPermissionsSeeder extends Seeder
 {
     public function run()
     {
-        // Crear o verificar permisos
+    
         $permissions = [
             'gestionar productos',
             'gestionar pedidos',
@@ -24,7 +24,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Crear roles y asignar permisos si no existen
         $admin = Role::firstOrCreate(['name' => 'administrador']);
-        $admin->syncPermissions($permissions); // Asignar todos los permisos al administrador
+        $admin->syncPermissions($permissions); 
 
         $mesero = Role::firstOrCreate(['name' => 'mesero']);
         $mesero->syncPermissions(['gestionar pedidos']);

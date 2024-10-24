@@ -30,14 +30,14 @@ class MovimientoInventario extends Model
             $producto = $movimiento->productos;
 
             if ($movimiento->tipo === 'entrada') {
-                // Sumar la cantidad al inventario
+                
                 $producto->cantidad += abs($movimiento->cantidad);
             } elseif ($movimiento->tipo === 'salida') {
-                // Restar la cantidad del inventario
+               
                 $producto->cantidad -= abs($movimiento->cantidad);
             }
 
-            // Guardar el cambio en el producto
+         
             $producto->save();
         });
     }
