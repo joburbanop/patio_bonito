@@ -14,7 +14,13 @@ class MovimientoInventarioResource extends Resource
 {
     protected static ?string $model = MovimientoInventario::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';  
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-path';  
+
+    public static function getPluralLabel(): string
+    {
+        return 'Movimiento inventario';  
+    }
+
 
     public static function shouldRegisterNavigation(): bool
     {

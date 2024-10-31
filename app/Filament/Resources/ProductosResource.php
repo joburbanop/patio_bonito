@@ -14,7 +14,13 @@ class ProductosResource extends Resource
 {
     protected static ?string $model = Productos::class;  // Cambiado a singular según convención del modelo.
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+
+    public static function getPluralLabel(): string
+    {
+        return 'Inventario'; 
+    }
+
 
      // Solo los administradores pueden ver este recurso en la navegación
      public static function shouldRegisterNavigation(): bool

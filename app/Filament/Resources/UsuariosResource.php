@@ -19,6 +19,11 @@ class UsuariosResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+    public static function getLabel(): string
+    {
+        return 'Usuarios';  
+    }
+
     public static function shouldRegisterNavigation(): bool
      {
          return auth()->user()->hasRole('administrador');
